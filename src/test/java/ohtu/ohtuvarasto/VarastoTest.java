@@ -88,4 +88,10 @@ public class VarastoTest {
         assertEquals(8, varasto.otaVarastosta(10), vertailuTarkkuus);
     }
 
+    @Test
+    public void yliSaldonOttaminenPalauttaaSaldon() {
+        varasto.lisaaVarastoon(-2);
+
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
 }
