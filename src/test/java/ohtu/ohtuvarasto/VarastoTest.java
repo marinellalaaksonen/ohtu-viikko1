@@ -65,4 +65,27 @@ public class VarastoTest {
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
 
+    @Test
+    public void lisataanEnintaanSaldo() {
+        varasto.lisaaVarastoon(12);
+
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }   
+
+    @Test
+    public void yliSaldonOttaminenTyhjentaa() {
+        varasto.lisaaVarastoon(8);
+
+        varasto.otaVarastosta(10);
+
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    } 
+
+    @Test
+    public void yliSaldonOttaminenPalauttaaSaldon() {
+        varasto.lisaaVarastoon(8);
+
+        assertEquals(8, varasto.otaVarastosta(10), vertailuTarkkuus);
+    }
+
 }
