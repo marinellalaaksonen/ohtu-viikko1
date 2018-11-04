@@ -85,7 +85,7 @@ public class VarastoTest {
     public void yliSaldonOttaminenPalauttaaSaldon() {
         varasto.lisaaVarastoon(8);
 
-        assertEquals(6, varasto.otaVarastosta(10), vertailuTarkkuus);
+        assertEquals(8, varasto.otaVarastosta(10), vertailuTarkkuus);
     }
 
 }
