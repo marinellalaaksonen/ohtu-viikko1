@@ -13,11 +13,14 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto toinen;
+    Varasto temp;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+        toinen = new Varasto(10, 8);
     }
 
     @Test
@@ -93,5 +96,70 @@ public class VarastoTest {
         varasto.lisaaVarastoon(-2);
 
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void tilavuusNegatiivinen() {
+        temp = new Varasto(-2);
+
+        assertEquals(0, temp.getTilavuus(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toinenVarasto() {
+
+        assertEquals(10, toinen.getTilavuus(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toinenVarastoSaldo() {
+
+        assertEquals(8, toinen.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toinenVarastoNegatiivinenTilavuus() {
+        temp = new Varasto(-2, 2);
+
+        assertEquals(0, temp.getTilavuus(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toinenVarastoNegatiivinenSaldo() {
+        temp = new Varasto(10, -2);
+
+        assertEquals(0, temp.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toinenVarastoSaldoSuurempiKuinTilavuus() {
+        temp = new Varasto(10, 12);
+
+        assertEquals(10, temp.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toinenVarastoSaldoNormaali() {
+        
+        assertEquals(8, toinen.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void otaVarastostaNegatiivinen() {
+
+        assertEquals(0, toinen.otaVarastosta(-2), vertailuTarkkuus);
+    }
+
+    @Test
+    public void otaVarastostaNegatiivinenEiMuutaSaldoa() {
+
+        assertEquals(8, toinen.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void toStringToimii() {
+
+        assertEquals("saldo = 8.0, vielä tilaa 2.0", 
+            toinen.toString());
     }
 }
