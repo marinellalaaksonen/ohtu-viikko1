@@ -15,7 +15,7 @@ public class VarastoTest {
     Varasto varasto;
     Varasto toinen;
     Varasto temp;
-    double vertailuTarkkuus = 0.0001;
+    final double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
